@@ -59,26 +59,24 @@ const Header = () => {
           <Bars3Icon className="h-4 w-4 text-gray-500" />
         </div>}
         {!isMobile && <>
-          <Link href="/apps" className='flex items-center mr-4'>
+          <Link href="/explore/apps" className='flex items-center mr-4'>
             <LogoSite className='object-contain' />
           </Link>
-          {systemFeatures.license.status === LicenseStatus.NONE && <GithubStar />}
         </>}
       </div>
       {isMobile && (
         <div className='flex'>
-          <Link href="/apps" className='flex items-center mr-4'>
+          <Link href="/explore/apps" className='flex items-center mr-4'>
             <LogoSite />
           </Link>
-          {systemFeatures.license.status === LicenseStatus.NONE && <GithubStar />}
         </div>
       )}
       {!isMobile && (
         <div className='flex items-center'>
           {!isCurrentWorkspaceDatasetOperator && <ExploreNav className={navClassName} />}
-          {!isCurrentWorkspaceDatasetOperator && <AppNav />}
+          {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <AppNav />}
           {(isCurrentWorkspaceEditor || isCurrentWorkspaceDatasetOperator) && <DatasetNav />}
-          {!isCurrentWorkspaceDatasetOperator && <ToolsNav className={navClassName} />}
+          {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <ToolsNav className={navClassName} />}
         </div>
       )}
       <div className='flex items-center flex-shrink-0'>
@@ -96,9 +94,9 @@ const Header = () => {
       {(isMobile && isShowNavMenu) && (
         <div className='w-full flex flex-col p-2 gap-y-1'>
           {!isCurrentWorkspaceDatasetOperator && <ExploreNav className={navClassName} />}
-          {!isCurrentWorkspaceDatasetOperator && <AppNav />}
+          {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <AppNav />}
           {(isCurrentWorkspaceEditor || isCurrentWorkspaceDatasetOperator) && <DatasetNav />}
-          {!isCurrentWorkspaceDatasetOperator && <ToolsNav className={navClassName} />}
+          {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <ToolsNav className={navClassName} />}
         </div>
       )}
     </div>
