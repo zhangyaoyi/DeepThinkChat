@@ -115,15 +115,14 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                         <ArrowUpRight className='hidden w-[14px] h-[14px] text-text-tertiary group-hover:flex' />
                       </Link>}
                     </Menu.Item>
-                    {isCurrentWorkspaceEditor && (
-                      <Menu.Item>
+                    {isCurrentWorkspaceEditor && <Menu.Item>
                         {({ active }) => <div className={classNames(itemClassName,
                           active && 'bg-state-base-hover',
                       )} onClick={() => setShowAccountSettingModal({ payload: 'members' })}>
                         <div>{t('common.userProfile.settings')}</div>
                         </div>}
                       </Menu.Item>
-                    )}
+                      }
                     {canEmailSupport && <Menu.Item>
                       {({ active }) => <a
                         className={classNames(itemClassName, 'group justify-between',
@@ -136,8 +135,7 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                       </a>}
                     </Menu.Item>}
 
-                    {isCurrentWorkspaceEditor && (
-                    <Menu.Item>
+                    {isCurrentWorkspaceEditor && <Menu.Item>
                       {({ active }) => <Link
                         className={classNames(itemClassName, 'group justify-between',
                           active && 'bg-state-base-hover',
@@ -147,8 +145,9 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                         <div>{t('common.userProfile.communityFeedback')}</div>
                         <ArrowUpRight className='hidden w-[14px] h-[14px] text-text-tertiary group-hover:flex' />
                       </Link>}
-                    </Menu.Item>
-                    <Menu.Item>
+                    </Menu.Item>}
+
+                    {isCurrentWorkspaceEditor && <Menu.Item>
                       {({ active }) => <Link
                         className={classNames(itemClassName, 'group justify-between',
                           active && 'bg-state-base-hover',
@@ -158,8 +157,9 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                         <div>{t('common.userProfile.community')}</div>
                         <ArrowUpRight className='hidden w-[14px] h-[14px] text-text-tertiary group-hover:flex' />
                       </Link>}
-                    </Menu.Item>
-                    <Menu.Item>
+                    </Menu.Item>}
+
+                    {isCurrentWorkspaceEditor && <Menu.Item>
                       {({ active }) => <Link
                         className={classNames(itemClassName, 'group justify-between',
                           active && 'bg-state-base-hover',
@@ -171,8 +171,9 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                         <div>{t('common.userProfile.helpCenter')}</div>
                         <ArrowUpRight className='hidden w-[14px] h-[14px] text-text-tertiary group-hover:flex' />
                       </Link>}
-                    </Menu.Item>
-                    <Menu.Item>
+                    </Menu.Item>}
+
+                    {isCurrentWorkspaceEditor && <Menu.Item>
                       {({ active }) => <Link
                         className={classNames(itemClassName, 'group justify-between',
                           active && 'bg-state-base-hover',
@@ -182,8 +183,8 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                         <div>{t('common.userProfile.roadmap')}</div>
                         <ArrowUpRight className='hidden w-[14px] h-[14px] text-text-tertiary group-hover:flex' />
                       </Link>}
-                      </Menu.Item>
-                    )}
+                      </Menu.Item>}
+                      
                     {
                       document?.body?.getAttribute('data-public-site-about') !== 'hide' && (
                         <Menu.Item>
