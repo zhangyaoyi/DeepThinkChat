@@ -19,7 +19,7 @@ const Explore: FC<IExploreProps> = ({
   const { t } = useTranslation()
   const router = useRouter()
   const [controlUpdateInstalledApps, setControlUpdateInstalledApps] = useState(0)
-  const { userProfile, isCurrentWorkspaceDatasetOperator, isCurrentWorkspaceEditor } = useAppContext()
+  const { userProfile, isCurrentWorkspaceDatasetOperator } = useAppContext()
   const [hasEditPermission, setHasEditPermission] = useState(false)
   const [installedApps, setInstalledApps] = useState<InstalledApp[]>([])
 
@@ -53,11 +53,9 @@ const Explore: FC<IExploreProps> = ({
         }
       >
         <Sidebar controlUpdateInstalledApps={controlUpdateInstalledApps} />
-        {isCurrentWorkspaceEditor && (
-          <div className='grow w-0'>
+        <div className='grow w-0'>
             {children}
-          </div>
-        )}
+        </div>
       </ExploreContext.Provider>
     </div>
   )
