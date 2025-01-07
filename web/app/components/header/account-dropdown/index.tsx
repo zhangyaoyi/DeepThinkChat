@@ -35,7 +35,7 @@ export default function AppSelector({ isMobile }: IAppSelector) {
 
   const { locale } = useContext(I18n)
   const { t } = useTranslation()
-  const { userProfile, langeniusVersionInfo } = useAppContext()
+  const { userProfile, langeniusVersionInfo, isCurrentWorkspaceEditor } = useAppContext()
   const { setShowAccountSettingModal } = useModalContext()
   const { plan } = useProviderContext()
   const canEmailSupport = plan.type === Plan.professional || plan.type === Plan.team || plan.type === Plan.enterprise
@@ -115,13 +115,15 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                         <ArrowUpRight className='hidden w-[14px] h-[14px] text-text-tertiary group-hover:flex' />
                       </Link>}
                     </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => <div className={classNames(itemClassName,
-                        active && 'bg-state-base-hover',
+                    {isCurrentWorkspaceEditor && (
+                      <Menu.Item>
+                        {({ active }) => <div className={classNames(itemClassName,
+                          active && 'bg-state-base-hover',
                       )} onClick={() => setShowAccountSettingModal({ payload: 'members' })}>
                         <div>{t('common.userProfile.settings')}</div>
-                      </div>}
-                    </Menu.Item>
+                        </div>}
+                      </Menu.Item>
+                    )}
                     {canEmailSupport && <Menu.Item>
                       {({ active }) => <a
                         className={classNames(itemClassName, 'group justify-between',
@@ -133,6 +135,8 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                         <ArrowUpRight className='hidden w-[14px] h-[14px] text-text-tertiary group-hover:flex' />
                       </a>}
                     </Menu.Item>}
+
+                    {isCurrentWorkspaceEditor && (
                     <Menu.Item>
                       {({ active }) => <Link
                         className={classNames(itemClassName, 'group justify-between',
@@ -178,7 +182,8 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                         <div>{t('common.userProfile.roadmap')}</div>
                         <ArrowUpRight className='hidden w-[14px] h-[14px] text-text-tertiary group-hover:flex' />
                       </Link>}
-                    </Menu.Item>
+                      </Menu.Item>
+                    )}
                     {
                       document?.body?.getAttribute('data-public-site-about') !== 'hide' && (
                         <Menu.Item>
