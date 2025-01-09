@@ -27,7 +27,7 @@ const ConfigPanel = () => {
   const themeBuilder = useThemeContext()
 
   return (
-    <div className='flex flex-col max-h-[80%] w-full max-w-[720px]'>
+    <div className='flex flex-col max-h-[80%] w-full max-w-[1100px]'>
       <div
         className={cn(
           'grow rounded-xl overflow-y-auto',
