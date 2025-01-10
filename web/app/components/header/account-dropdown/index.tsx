@@ -184,9 +184,9 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                         <ArrowUpRight className='hidden w-[14px] h-[14px] text-text-tertiary group-hover:flex' />
                       </Link>}
                       </Menu.Item>}
-                      
+
                     {
-                      document?.body?.getAttribute('data-public-site-about') !== 'hide' && (
+                      isCurrentWorkspaceEditor && document?.body?.getAttribute('data-public-site-about') !== 'hide' && (
                         <Menu.Item>
                           {({ active }) => <div className={classNames(itemClassName, 'justify-between',
                             active && 'bg-state-base-hover',
