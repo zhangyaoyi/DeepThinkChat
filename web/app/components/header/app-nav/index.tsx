@@ -76,7 +76,7 @@ const AppNav = () => {
       const navItems = appItems.map((app) => {
         const link = ((isCurrentWorkspaceEditor, app) => {
           if (!isCurrentWorkspaceEditor) {
-            return `/app/${app.id}/overview`
+            return `/app/${app.id}/develop`
           }
           else {
             if (app.mode === 'workflow' || app.mode === 'advanced-chat')

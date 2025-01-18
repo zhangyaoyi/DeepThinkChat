@@ -154,6 +154,13 @@ const Apps = ({
     }
   }
 
+  if (!isCurrentWorkspaceEditor) {
+    return (
+      <div className="flex h-full items-center">
+      </div>
+    )
+  }
+
   if (!categories || categories.length === 0) {
     return (
       <div className="flex h-full items-center">

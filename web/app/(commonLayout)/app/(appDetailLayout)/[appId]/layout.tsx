@@ -86,12 +86,15 @@ const AppDetailLayout: FC<IAppDetailLayoutProps> = (props) => {
         }]
         : []
       ),
-      {
-        name: t('common.appMenus.overview'),
-        href: `/app/${appId}/overview`,
-        icon: RiDashboard2Line,
-        selectedIcon: RiDashboard2Fill,
-      },
+      ...(isCurrentWorkspaceEditor
+        ? [{
+          name: t('common.appMenus.overview'),
+          href: `/app/${appId}/overview`,
+          icon: RiDashboard2Line,
+          selectedIcon: RiDashboard2Fill,
+        }]
+        : []
+      ),
     ]
     return navs
   }, [t])
