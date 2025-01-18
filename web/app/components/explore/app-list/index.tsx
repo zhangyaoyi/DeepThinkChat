@@ -64,22 +64,24 @@ const Apps = ({
     disableSearchParams: pageType !== PageType.EXPLORE,
   })
 
+  const fetcher = () => {
+    if (!isCurrentWorkspaceEditor) {
+      return Promise.resolve({ categories: [], recommended_apps: [] }); // 返回默认值
+    }
+    return fetchAppList().then(({ categories, recommended_apps }) => ({
+      categories,
+      allList: recommended_apps.sort((a, b) => a.position - b.position),
+    }));
+  };
+
   const {
     data: { categories, allList },
-  } = useSWR(
-    ['/explore/apps'],
-    () =>
-      fetchAppList().then(({ categories, recommended_apps }) => ({
-        categories,
-        allList: recommended_apps.sort((a, b) => a.position - b.position),
-      })),
-    {
-      fallbackData: {
-        categories: [],
-        allList: [],
-      },
+  } = useSWR(['/explore/apps'], fetcher, {
+    fallbackData: {
+      categories: [],
+      allList: [],
     },
-  )
+  });
 
   const filteredList = useMemo(() => {
     if (currCategory === allCategoriesEn) {

@@ -52,7 +52,7 @@ const Header = () => {
   return (
     <div className='flex flex-1 items-center justify-between px-4 bg-background-body'>
       <div className='flex items-center'>
-        {isMobile && <div
+        {isCurrentWorkspaceEditor && isMobile && <div
           className='flex items-center justify-center h-8 w-8 cursor-pointer'
           onClick={toggle}
         >
@@ -71,9 +71,9 @@ const Header = () => {
           </Link>
         </div>
       )}
-      {!isMobile && (
+      {isCurrentWorkspaceEditor && !isMobile && (
         <div className='flex items-center'>
-          {!isCurrentWorkspaceDatasetOperator && <ExploreNav className={navClassName} />}
+          {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <ExploreNav className={navClassName} />}
           {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <AppNav />}
           {(isCurrentWorkspaceEditor || isCurrentWorkspaceDatasetOperator) && <DatasetNav />}
           {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <ToolsNav className={navClassName} />}
@@ -91,9 +91,9 @@ const Header = () => {
           <AccountDropdown isMobile={isMobile} />
         </WorkspaceProvider>
       </div>
-      {(isMobile && isShowNavMenu) && (
+      {isCurrentWorkspaceEditor &&(isMobile && isShowNavMenu) && (
         <div className='w-full flex flex-col p-2 gap-y-1'>
-          {!isCurrentWorkspaceDatasetOperator && <ExploreNav className={navClassName} />}
+          {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <ExploreNav className={navClassName} />}
           {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <AppNav />}
           {(isCurrentWorkspaceEditor || isCurrentWorkspaceDatasetOperator) && <DatasetNav />}
           {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <ToolsNav className={navClassName} />}
