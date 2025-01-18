@@ -11,6 +11,8 @@ import { CssTransform } from '../embedded-chatbot/theme/utils'
 import { User } from '@/app/components/base/icons/src/public/avatar'
 import { Markdown } from '@/app/components/base/markdown'
 import { FileList } from '@/app/components/base/file-uploader'
+import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+
 
 type QuestionProps = {
   item: ChatItem
@@ -26,10 +28,12 @@ const Question: FC<QuestionProps> = ({
     content,
     message_files,
   } = item
+const isMobile = useBreakpoints() === MediaType.mobile
+
 
   return (
-    <div className='flex justify-end mb-2 last:mb-0 pl-14'>
-      <div className='group relative mr-4 max-w-full'>
+    <div className={`flex justify-end mb-2 last:mb-0 ${isMobile ? '' : 'pl-14'}`}>
+      <div className={`group relative ${isMobile ? '' : 'mr-4'} max-w-full`}>
         <div
           className='px-4 py-3 bg-[#D1E9FF]/50 rounded-2xl text-sm text-gray-900'
           style={theme?.chatBubbleColorStyle ? CssTransform(theme.chatBubbleColorStyle) : {}}
@@ -47,15 +51,17 @@ const Question: FC<QuestionProps> = ({
         </div>
         <div className='mt-1 h-[18px]' />
       </div>
-      <div className='shrink-0 w-10 h-10'>
+      {!isMobile && (
+        <div className='shrink-0 w-10 h-10'>
         {
           questionIcon || (
             <div className='w-full h-full rounded-full border-[0.5px] border-black/5'>
               <User className='w-full h-full' />
             </div>
-          )
-        }
-      </div>
+            )
+          }
+        </div>
+      )}
     </div>
   )
 }

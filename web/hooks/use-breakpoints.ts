@@ -12,8 +12,8 @@ const useBreakpoints = () => {
   const media = (() => {
     if (width <= 640)
       return MediaType.mobile
-    if (width <= 768)
-      return MediaType.tablet
+    if (width <= 1024)
+      return MediaType.mobile
     return MediaType.pc
   })()
 

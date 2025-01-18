@@ -22,6 +22,7 @@ import AnswerIcon from '@/app/components/base/answer-icon'
 import { ChevronRight } from '@/app/components/base/icons/src/vender/line/arrows'
 import cn from '@/utils/classnames'
 import { FileList } from '@/app/components/base/file-uploader'
+import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
 
 type AnswerProps = {
   item: ChatItem
@@ -102,16 +103,18 @@ const Answer: FC<AnswerProps> = ({
 
   return (
     <div className='flex mb-2 last:mb-0'>
-      <div className='shrink-0 relative w-10 h-10'>
-        {answerIcon || <AnswerIcon />}
-        {responding && (
-          <div className='absolute -top-[3px] -left-[3px] pl-[6px] flex items-center w-4 h-4 bg-white rounded-full shadow-xs border-[0.5px] border-gray-50'>
-            <LoadingAnim type='avatar' />
-          </div>
-        )}
-      </div>
-      <div className='chat-answer-container group grow w-0 ml-4' ref={containerRef}>
-        <div className={cn('group relative pr-10', chatAnswerContainerInner)}>
+      {!isMobile && (
+        <div className='shrink-0 relative w-10 h-10'>
+          {answerIcon || <AnswerIcon />}
+          {responding && (
+            <div className='absolute -top-[3px] -left-[3px] pl-[6px] flex items-center w-4 h-4 bg-white rounded-full shadow-xs border-[0.5px] border-gray-50'>
+              <LoadingAnim type='avatar' />
+            </div>
+          )}
+        </div>
+      )}
+      <div className={`chat-answer-container group grow w-0 ${isMobile ? '' : 'ml-4'}`} ref={containerRef}>
+        <div className={cn('group relative', isMobile ? '' : 'pr-10', chatAnswerContainerInner)}>
           <div
             ref={contentRef}
             className={cn('relative inline-block px-4 py-3 max-w-full bg-chat-bubble-bg rounded-2xl body-lg-regular text-text-primary', workflowProcess && 'w-full')}
