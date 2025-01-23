@@ -2,16 +2,24 @@
 import { usePathname } from 'next/navigation'
 import s from './index.module.css'
 import classNames from '@/utils/classnames'
+import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
 
 type HeaderWrapperProps = {
   children: React.ReactNode
 }
+
+const media = useBreakpoints()
+const isMobile = media === MediaType.mobile
 
 const HeaderWrapper = ({
   children,
 }: HeaderWrapperProps) => {
   const pathname = usePathname()
   const isBordered = ['/apps', '/datasets', '/datasets/create', '/tools'].includes(pathname)
+  
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div className={classNames(

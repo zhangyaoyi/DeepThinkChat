@@ -92,7 +92,7 @@ const SideBar: FC<IExploreSideBarProps> = ({
 
   const pinnedAppsCount = installedApps.filter(({ is_pinned }) => is_pinned).length
   return (
-    <div className='w-fit sm:w-[216px] shrink-0 pt-6 px-4 border-gray-200 cursor-pointer'>
+    <div className='w-fit sm:w-[216px] shrink-0 px-4 border-gray-200 cursor-pointer'>
       {isCurrentWorkspaceEditor && (
         <div>
           <Link
@@ -106,7 +106,7 @@ const SideBar: FC<IExploreSideBarProps> = ({
         </div>
       )}
       {installedApps.length > 0 && (
-        <div className='mt-10'>
+        <div>
           <div className='mt-3 space-y-1 overflow-y-auto overflow-x-hidden'
             style={{
               height: 'calc(100vh - 250px)',
