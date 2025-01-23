@@ -10,6 +10,11 @@ build-web:
 	docker buildx build --platform linux/amd64 -t $(WEB_IMAGE):$(VERSION) ./web
 	@echo "Web Docker image built successfully: $(WEB_IMAGE):$(VERSION)"
 
+build-web-arm:
+	@echo "Building web Docker image: $(WEB_IMAGE):$(VERSION)..."
+	docker buildx build --platform linux/arm64 -t $(WEB_IMAGE):$(VERSION) ./web
+	@echo "Web Docker image built successfully: $(WEB_IMAGE):$(VERSION)"
+
 build-api:
 	@echo "Building API Docker image: $(API_IMAGE):$(VERSION)..."
 	docker build -t $(API_IMAGE):$(VERSION) ./api
@@ -34,6 +39,7 @@ push-all: push-web push-api
 
 build-push-api: build-api push-api
 build-push-web: build-web push-web
+build-push-web-arm: build-web-arm push-web
 
 # Build and push all images
 build-push-all: build-all push-all

@@ -8,28 +8,26 @@ type HeaderWrapperProps = {
   children: React.ReactNode
 }
 
-const media = useBreakpoints()
-const isMobile = media === MediaType.mobile
-
 const HeaderWrapper = ({
   children,
 }: HeaderWrapperProps) => {
   const pathname = usePathname()
   const isBordered = ['/apps', '/datasets', '/datasets/create', '/tools'].includes(pathname)
-  
-  if (isMobile) {
-    return null;
-  }
+  const isMobile = useBreakpoints() === MediaType.mobile
 
-  return (
-    <div className={classNames(
-      'sticky top-0 left-0 right-0 z-30 flex flex-col grow-0 shrink-0 basis-auto min-h-[56px]',
-      s.header,
-      isBordered ? 'border-b border-divider-regular' : '',
-    )}
-    >
-      {children}
-    </div>
-  )
+  if (isMobile) {
+    return <div></div>;
+  } else {
+    return (
+      <div className={classNames(
+        'sticky top-0 left-0 right-0 z-30 flex flex-col grow-0 shrink-0 basis-auto min-h-[56px]',
+        s.header,
+        isBordered ? 'border-b border-divider-regular' : '',
+      )}
+      >
+        {children}
+      </div>
+    )
+  }
 }
 export default HeaderWrapper
