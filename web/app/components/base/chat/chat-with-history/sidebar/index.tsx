@@ -60,7 +60,7 @@ const Sidebar = () => {
   }, [showRename, handleRenameConversation, handleCancelRename])
 
   return (
-    <div className='shrink-0 h-full flex flex-col w-[240px] border-r border-r-gray-100'>
+    <div className='shrink-0 h-full flex flex-col w-[280px] border-r border-r-gray-100'>
       {
         !isMobile && (
           <div className='shrink-0 flex p-4'>
