@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation'
 import s from './index.module.css'
 import classNames from '@/utils/classnames'
 import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+import { useAppContext } from '@/context/app-context'
 
 type HeaderWrapperProps = {
   children: React.ReactNode
@@ -14,8 +15,8 @@ const HeaderWrapper = ({
   const pathname = usePathname()
   const isBordered = ['/apps', '/datasets', '/datasets/create', '/tools'].includes(pathname)
   const isMobile = useBreakpoints() === MediaType.mobile
-
-  if (isMobile) {
+  const { isCurrentWorkspaceEditor } = useAppContext()
+  if (isMobile && !isCurrentWorkspaceEditor) {
     return <div></div>;
   } else {
     return (
