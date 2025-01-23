@@ -79,18 +79,6 @@ const Header = () => {
           {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <ToolsNav className={navClassName} />}
         </div>
       )}
-      <div className='flex items-center flex-shrink-0'>
-        <LicenseNav />
-        <EnvNav />
-        {enableBilling && (
-          <div className='mr-3 select-none'>
-            <HeaderBillingBtn onClick={handlePlanClick} />
-          </div>
-        )}
-        <WorkspaceProvider>
-          <AccountDropdown isMobile={isMobile} />
-        </WorkspaceProvider>
-      </div>
       {isCurrentWorkspaceEditor &&(isMobile && isShowNavMenu) && (
         <div className='w-full flex flex-col p-2 gap-y-1'>
           {(isCurrentWorkspaceEditor && !isCurrentWorkspaceDatasetOperator) && <ExploreNav className={navClassName} />}

@@ -20,6 +20,8 @@ import { useModalContext } from '@/context/modal-context'
 import { LanguagesSupported } from '@/i18n/language'
 import { useProviderContext } from '@/context/provider-context'
 import { Plan } from '@/app/components/billing/type'
+import s from './index.module.css'
+import cn from '@/utils/classnames'
 
 export type IAppSelector = {
   isMobile: boolean
@@ -84,11 +86,11 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                 leaveTo="transform opacity-0 scale-95"
               >
                 <Menu.Items
-                  className="
-                    absolute right-0 mt-1.5 w-60 max-w-80
-                    divide-y divide-divider-subtle origin-top-right rounded-lg bg-components-panel-bg-blur
-                    shadow-lg focus:outline-none
-                  "
+                  className={cn(
+                    "mt-1.5 w-60 max-w-80",
+                    s.accountDropdown,
+                    "divide-y divide-divider-subtle origin-top-right rounded-lg bg-components-panel-bg-blur shadow-lg focus:outline-none"
+                  )}
                 >
                   <Menu.Item disabled>
                     <div className='flex flex-nowrap items-center px-4 py-[13px]'>
@@ -99,10 +101,13 @@ export default function AppSelector({ isMobile }: IAppSelector) {
                       </div>
                     </div>
                   </Menu.Item>
-                  <div className='px-1 py-1'>
+
+                  {isCurrentWorkspaceEditor && <div className='px-1 py-1'>
                     <div className='mt-2 px-3 text-xs font-medium text-text-tertiary'>{t('common.userProfile.workspace')}</div>
-                    <WorkplaceSelector />
-                  </div>
+                      <WorkplaceSelector />
+                    </div>
+                  }
+
                   <div className="px-1 py-1">
                     <Menu.Item>
                       {({ active }) => <Link

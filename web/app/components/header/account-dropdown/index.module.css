@@ -1,0 +1,8 @@
+.accountDropdown {
+  position: absolute; /* 确保它是绝对定位 */
+  top: auto; /* 清除顶部默认值 */
+  bottom: 100%; /* 将 dropdown 放置在触发按钮的上方 */
+  left: 0; /* 保持左对齐 */
+  transform: translateY(-10px); /* 可选：增加一点偏移量，让显示更美观 */
+  z-index: 999; /* 确保下拉菜单不会被其他元素遮挡 */
+}

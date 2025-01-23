@@ -13,6 +13,10 @@ import ExploreContext from '@/context/explore-context'
 import Confirm from '@/app/components/base/confirm'
 import Divider from '@/app/components/base/divider'
 import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+import LicenseNav from '../../header/license-env'
+import HeaderBillingBtn from '../../billing/header-billing-btn'
+import { WorkspaceProvider } from '@/context/workspace-context'
+import AccountDropdown from '../../header/account-dropdown'
 
 const SelectedDiscoveryIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -137,6 +141,14 @@ const SideBar: FC<IExploreSideBarProps> = ({
           </div>
         </div>
       )}
+
+      <div className='absolute bottom-0 pb-4'>
+        <WorkspaceProvider>
+          <AccountDropdown isMobile={isMobile} />
+        </WorkspaceProvider>
+      </div>
+
+
       {showConfirm && (
         <Confirm
           title={t('explore.sidebar.delete.title')}
