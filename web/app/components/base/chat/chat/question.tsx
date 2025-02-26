@@ -14,7 +14,7 @@ import { FileList } from '@/app/components/base/file-uploader'
 import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
 
 
-type QuestionProps = {
+interface QuestionProps {
   item: ChatItem
   questionIcon?: ReactNode
   theme: Theme | null | undefined
